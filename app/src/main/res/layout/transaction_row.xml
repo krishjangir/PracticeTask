@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="transactionData"
+            type="com.practicetask.data.model.ATMData" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_12">
+
+        <TextView
+            android:id="@+id/tv_atm_amount_value"
+            android:layout_width="@dimen/size_80"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:padding="@dimen/size_5"
+            android:text="@{`Rs.` +transactionData.amount.toString()}"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_100_rs_value"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/size_5"
+            android:text="@{transactionData.oneHundred.toString()}"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toEndOf="@+id/tv_atm_amount_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_200_rs_value"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/size_5"
+            android:text="@{transactionData.twoHundred.toString()}"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toEndOf="@+id/tv_100_rs_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_500_rs_value"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/size_5"
+            android:text="@{transactionData.fiveHundred.toString()}"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toEndOf="@+id/tv_200_rs_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_2000_rs_value"
+            android:layout_width="@dimen/size_60"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/size_5"
+            android:text="@{transactionData.twoThousand.toString()}"
+            android:textColor="@color/colorGray"
+            android:textSize="@dimen/font_14"
+            app:layout_constraintStart_toEndOf="@+id/tv_500_rs_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_5"
+            android:layout_marginTop="@dimen/size_10"
+            android:background="@drawable/dotted_line"
+            android:layerType="software"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_atm_amount_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

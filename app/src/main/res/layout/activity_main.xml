@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="transactionAdapter"
+            type="com.practicetask.ui.adapter.TransactionAdapter" />
+
+        <variable
+            name="availableAmount"
+            type="com.practicetask.data.model.ATMData" />
+
+        <variable
+            name="lastTransactions"
+            type="com.practicetask.data.model.ATMData" />
+
+        <variable
+            name="mainViewModel"
+            type="com.practicetask.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.MainActivity">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_atm_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_6"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="@dimen/size_5"
+                app:cardElevation="@dimen/size_6"
+                app:cardMaxElevation="@dimen/size_6"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_12">
+
+                    <TextView
+                        android:id="@+id/tv_atm_amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/atm_amount"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_100_rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_100"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_atm_amount"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_200_rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_200"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_100_rs"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_500_rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_500"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_200_rs"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_2000_rs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_2000"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_500_rs"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_atm_amount_value"
+                        android:layout_width="@dimen/size_80"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:padding="@dimen/size_5"
+                        android:text="@{`Rs.` +availableAmount.amount.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toStartOf="@+id/tv_atm_amount"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_atm_amount" />
+
+                    <TextView
+                        android:id="@+id/tv_100_rs_value"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{availableAmount.oneHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_atm_amount"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_100_rs" />
+
+                    <TextView
+                        android:id="@+id/tv_200_rs_value"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{availableAmount.twoHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_100_rs"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_200_rs" />
+
+                    <TextView
+                        android:id="@+id/tv_500_rs_value"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{availableAmount.fiveHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_200_rs"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_500_rs" />
+
+                    <TextView
+                        android:id="@+id/tv_2000_rs_value"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{availableAmount.twoThousand.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_500_rs"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_2000_rs" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/withdraw_amount_text_field"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_14"
+                android:hint="@string/enter_your_withdraw_amount"
+                app:layout_constraintTop_toBottomOf="@id/cv_atm_amount">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:text="@={mainViewModel.amount}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_withdraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_40"
+                android:layout_marginRight="@dimen/size_16"
+                android:background="@drawable/round_primary_btn"
+                android:elevation="@dimen/size_5"
+                android:gravity="center_horizontal"
+                android:onClick="@{mainViewModel::onWithdrawButtonClick}"
+                android:paddingHorizontal="@dimen/size_100"
+                android:paddingVertical="@dimen/size_5"
+                android:text="@string/withdraw"
+                android:textAllCaps="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/font_18"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/withdraw_amount_text_field"
+                app:layout_constraintLeft_toLeftOf="@+id/withdraw_amount_text_field"
+                app:layout_constraintRight_toRightOf="@+id/withdraw_amount_text_field"
+                app:layout_constraintStart_toStartOf="@+id/withdraw_amount_text_field"
+                app:layout_constraintTop_toBottomOf="@id/withdraw_amount_text_field" />
+
+            <TextView
+                android:id="@+id/tv_last_transactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:paddingHorizontal="@dimen/size_12"
+                android:text="@string/last_transactions"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font_18"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_withdraw" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_last_transition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_6"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="@dimen/size_5"
+                app:cardElevation="@dimen/size_6"
+                app:cardMaxElevation="@dimen/size_6"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintTop_toBottomOf="@id/tv_last_transactions">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_12">
+
+                    <TextView
+                        android:id="@+id/tv_atm_amount_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/atm_amount"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_100_rs_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_100"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_atm_amount_last"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_200_rs_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_200"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_100_rs_last"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_500_rs_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_500"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_200_rs_last"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_2000_rs_last"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_2000"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_500_rs_last"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_atm_amount_value_last"
+                        android:layout_width="@dimen/size_80"
+                        android:layout_height="wrap_content"
+                        android:gravity="start"
+                        android:padding="@dimen/size_5"
+                        android:text="@{`Rs.` +lastTransactions.amount.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toStartOf="@+id/tv_atm_amount_last"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_atm_amount_last" />
+
+                    <TextView
+                        android:id="@+id/tv_100_rs_value_last"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{lastTransactions.oneHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_atm_amount_last"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_100_rs_last" />
+
+                    <TextView
+                        android:id="@+id/tv_200_rs_value_last"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{lastTransactions.twoHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_100_rs_last"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_200_rs_last" />
+
+                    <TextView
+                        android:id="@+id/tv_500_rs_value_last"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{lastTransactions.fiveHundred.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_200_rs_last"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_500_rs_last" />
+
+                    <TextView
+                        android:id="@+id/tv_2000_rs_value_last"
+                        android:layout_width="@dimen/size_60"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="@dimen/size_5"
+                        android:text="@{lastTransactions.twoThousand.toString()}"
+                        android:textColor="@color/colorGray"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_500_rs_last"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_2000_rs_last" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tv_your_transactions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:paddingHorizontal="@dimen/size_12"
+                android:text="@string/your_transactions"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/font_18"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cv_last_transition" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_transactions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_6"
+                app:cardBackgroundColor="@color/colorWhite"
+                app:cardCornerRadius="@dimen/size_5"
+                app:cardElevation="@dimen/size_6"
+                app:cardMaxElevation="@dimen/size_6"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@+id/tv_your_transactions"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_your_transactions"
+                app:layout_constraintRight_toRightOf="@+id/tv_your_transactions"
+                app:layout_constraintStart_toStartOf="@+id/tv_your_transactions"
+                app:layout_constraintTop_toBottomOf="@id/tv_your_transactions">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_12">
+
+                    <TextView
+                        android:id="@+id/tv_atm_amount_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/atm_amount"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_100_rs_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_100"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_atm_amount_rv"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_200_rs_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_200"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_100_rs_rv"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_500_rs_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_500"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_200_rs_rv"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_2000_rs_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/size_5"
+                        android:text="@string/rs_2000"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/font_14"
+                        app:layout_constraintStart_toEndOf="@+id/tv_500_rs_rv"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_transactions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adapter="@{transactionAdapter}"
+                        android:background="@color/colorWhite"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/tv_atm_amount_rv" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

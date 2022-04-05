@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">My ATM</string>
+    <string name="enter_your_withdraw_amount">Enter your withdraw amount</string>
+    <string name="withdraw">Withdraw</string>
+    <string name="atm_amount">ATM Amount</string>
+    <string name="rs_100">Rs. 100</string>
+    <string name="rs_200">Rs. 200</string>
+    <string name="rs_500">Rs. 500</string>
+    <string name="rs_2000">Rs. 2000</string>
+    <string name="last_transactions">Last Transactions</string>
+    <string name="your_transactions">Your Transactions</string>
+    <string name="transactions_started">Transaction Started</string>
+    <string name="transactions_success">Transaction Success</string>
+    <string name="transactions_failed">Oops,Something went wrong please check ATM\'s available amount first</string>
+    <string name="please_enter_amount">Please enter amount!</string>
+    <string name="please_enter_amount_valid_amount">Please enter amount in multiple of 100</string>
+    <string name="you_can_withdraw_only_10000_at_a_time">You can withdraw only 10000 at a time!</string>
+</resources>
