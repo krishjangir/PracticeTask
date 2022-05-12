@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/dottedline.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/drawable/round_primary_btn.xml" value="0.24820512820512822" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/transaction_row.xml" value="0.2006340579710145" />
       </map>
     </option>

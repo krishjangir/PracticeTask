@@ -14,13 +14,13 @@ import com.practicetask.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity(), WithdrawListener {
     private lateinit var binding: ActivityMainBinding
-    lateinit var transactionAdapter: TransactionAdapter
+    private lateinit var transactionAdapter: TransactionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
-        val viewModel: MainViewModel =
+        val viewModel =
             ViewModelProvider(
                 this,
                 MainViewModel.MainViewModelFactory(this)
@@ -39,18 +39,16 @@ class MainActivity : AppCompatActivity(), WithdrawListener {
             )
         )
 
-        viewModel.getAllTransactions()?.observe(this, { transactionList ->
-            transactionAdapter =
-                TransactionAdapter(this, transactionList as ArrayList<ATMData>)
-            if (transactionList.isNotEmpty()) {
-                binding.lastTransactions = transactionList[0]
+
+        viewModel.getAllTransactions()?.observe(this) { transList ->
+            transactionAdapter = TransactionAdapter(this, transList as ArrayList<ATMData>)
+            if (transList.isNotEmpty()) {
+                binding.lastTransactions = transList[0]
             }
             binding.transactionAdapter = transactionAdapter
-        })
+        }
 
-        viewModel.getAvailableAmount()?.observe(this, { availableAmount ->
-            binding.availableAmount = availableAmount
-        })
+        viewModel.getAvailableAmount()
 
     }
 

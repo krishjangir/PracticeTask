@@ -3,17 +3,19 @@ package com.practicetask.viewmodel
 import android.content.Context
 import android.view.View
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.practicetask.R
 import com.practicetask.callbacks.WithdrawListener
 import com.practicetask.data.model.ATMData
 import com.practicetask.data.repository.ATMRepository
+import com.practicetask.ui.MainActivity
 
 
 class MainViewModel(var context: Context) : ViewModel() {
     var amount = ""
-    var availableAmount: ATMData? = null
+    var availableAmountData: LiveData<ATMData>? = null
     var withdrawListener: WithdrawListener? = null
 
     //withdraw button click handle
@@ -50,9 +52,9 @@ class MainViewModel(var context: Context) : ViewModel() {
         return ATMRepository.getAllTransactions(context)
     }
 
-    //getAllTransactions
-    fun getAvailableAmount(): LiveData<ATMData>? {
-        return ATMRepository.getAvailableAmount(context)
+    //getAvailableAmount
+    fun getAvailableAmount() {
+        availableAmountData = ATMRepository.getAvailableAmount(context)
     }
 
 

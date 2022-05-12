@@ -10,10 +10,6 @@
             type="com.practicetask.ui.adapter.TransactionAdapter" />
 
         <variable
-            name="availableAmount"
-            type="com.practicetask.data.model.ATMData" />
-
-        <variable
             name="lastTransactions"
             type="com.practicetask.data.model.ATMData" />
 
@@ -111,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:padding="@dimen/size_5"
-                        android:text="@{`Rs.` +availableAmount.amount.toString()}"
+                        android:text="@{`Rs.` +mainViewModel.availableAmountData.amount.toString()}"
                         android:textColor="@color/colorGray"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintStart_toStartOf="@+id/tv_atm_amount"
@@ -123,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/size_5"
-                        android:text="@{availableAmount.oneHundred.toString()}"
+                        android:text="@{mainViewModel.availableAmountData.oneHundred.toString()}"
                         android:textColor="@color/colorGray"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintStart_toEndOf="@+id/tv_atm_amount"
@@ -135,7 +131,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/size_5"
-                        android:text="@{availableAmount.twoHundred.toString()}"
+                        android:text="@{mainViewModel.availableAmountData.twoHundred.toString()}"
                         android:textColor="@color/colorGray"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintStart_toEndOf="@+id/tv_100_rs"
@@ -147,7 +143,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/size_5"
-                        android:text="@{availableAmount.fiveHundred.toString()}"
+                        android:text="@{mainViewModel.availableAmountData.fiveHundred.toString()}"
                         android:textColor="@color/colorGray"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintStart_toEndOf="@+id/tv_200_rs"
@@ -159,7 +155,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="@dimen/size_5"
-                        android:text="@{availableAmount.twoThousand.toString()}"
+                        android:text="@{mainViewModel.availableAmountData.twoThousand.toString()}"
                         android:textColor="@color/colorGray"
                         android:textSize="@dimen/font_14"
                         app:layout_constraintStart_toEndOf="@+id/tv_500_rs"
